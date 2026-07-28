@@ -19,6 +19,15 @@
   
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- Theme init (before paint, to avoid flash) -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'lunar' : 'solar');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
   <!-- Header Section -->
@@ -48,6 +57,7 @@
           <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="theme-toggle" aria-label="Toggle solar/lunar theme" title="Solar / Lunar">☼</button>
       </div>
     </div>
   </nav>

@@ -67,3 +67,23 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(item);
   });
 });
+
+// Solar / Lunar theme toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.querySelector('.theme-toggle');
+  if (!toggle) return;
+
+  function syncGlyph() {
+    const lunar = document.documentElement.getAttribute('data-theme') === 'lunar';
+    toggle.textContent = lunar ? '☾' : '☼';
+  }
+
+  syncGlyph();
+
+  toggle.addEventListener('click', function() {
+    const next = document.documentElement.getAttribute('data-theme') === 'lunar' ? 'solar' : 'lunar';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    syncGlyph();
+  });
+});
