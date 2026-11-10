@@ -418,6 +418,10 @@ body {
   content: ' ↗';
 }
 
+.project-content > a + a {
+  margin-left: 1.25rem;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
