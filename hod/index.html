@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intelligenza Collettiva Aumentata Antagonista</title>
+<meta name="description" content="Slide del talk a Hack or d(A/I) 2026, Vag61 Bologna, 14 novembre 2026.">
+<style>
+:root{--bg:#0d0e10;--panel:#1d1e20;--fg:#dadadb;--mut:#9b9c9d;--g:#00ff41;--p:#ff2e6e}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif}
+header{max-width:1200px;margin:0 auto;padding:20px 16px 8px}
+header p{margin:0;font-family:"Courier New",monospace;color:var(--g);font-size:14px}
+h1{font-family:"Courier New",monospace;font-size:clamp(20px,3.4vw,34px);margin:6px 0 4px;color:#f2f2f0}
+h1 span{color:var(--p)}
+.meta{color:var(--mut);font-size:14px;margin:0}
+.meta a{color:var(--fg)}
+main{max-width:1200px;margin:0 auto;padding:8px 16px 24px}
+.stage{position:relative;background:var(--panel);aspect-ratio:16/9;width:100%;overflow:hidden}
+.stage img{width:100%;height:100%;display:block;object-fit:contain}
+.stage button{position:absolute;top:0;bottom:0;width:30%;background:transparent;border:0;cursor:pointer}
+.stage .prev{left:0}.stage .next{right:0}
+.bar{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:"Courier New",monospace;flex-wrap:wrap}
+.bar button,.bar a{background:var(--panel);color:var(--fg);border:1px solid #414244;padding:8px 14px;font:inherit;cursor:pointer;text-decoration:none}
+.bar button:hover,.bar a:hover{border-color:var(--g);color:var(--g)}
+#count{color:var(--mut);min-width:70px;text-align:center}
+.bar .right{margin-left:auto;display:flex;gap:8px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:20px}
+.thumbs img{width:100%;display:block;cursor:pointer;border:2px solid transparent;opacity:.75}
+.thumbs img.on{border-color:var(--g);opacity:1}
+footer{max-width:1200px;margin:0 auto;padding:0 16px 32px;color:var(--mut);font-size:13px}
+.stage:fullscreen{background:#000}
+</style>
+</head>
+<body>
+<header>
+<p>$ hackordiye26 --talk sab-14-nov</p>
+<h1>Intelligenza Collettiva Aumentata <span>Antagonista</span></h1>
+<p class="meta">Stocastico · Hack or d(A/I) 2026, Vag61 Bologna, 14 novembre 2026 · <a href="intelligenza-collettiva-aumentata-antagonista.pdf">PDF con i link cliccabili</a></p>
+</header>
+<main>
+<div class="stage" id="stage">
+<img id="slide" src="slides/01.jpg" alt="">
+<button class="prev" aria-label="Slide precedente"></button>
+<button class="next" aria-label="Slide successiva"></button>
+</div>
+<div class="bar">
+<button id="b-prev" aria-label="Slide precedente">&larr;</button>
+<span id="count">1 / N</span>
+<button id="b-next" aria-label="Slide successiva">&rarr;</button>
+<div class="right">
+<button id="b-full">schermo intero</button>
+<a href="intelligenza-collettiva-aumentata-antagonista.pdf" download>scarica PDF</a>
+</div>
+</div>
+<div class="thumbs" id="thumbs"></div>
+</main>
+<footer>Frecce o tocco ai lati per scorrere. Le figure con dati inventati sono indicate sulla slide.</footer>
+<script>
+const ALTS = ["Intelligenza Collettiva Aumentata Antagonista Strumenti per decidere insieme: consenso visibile, contributi protetti, potere tracciato. mezzo pippone · mezza pratica Stocastico", "La democrazia (rappresentativa) è stata hackerata l’exploit Piattaforme costruite per trattenere l’attenzione Pubblicità politica mirata da un algoritmo Informazione e soldi concentrati in poche mani la patch Pretendere processi deliberativi veri, con obbligo di risposta Accanto alla rappresentanza, non al suo posto E nel frattempo costruirceli tra noi", "Information overload e misinformazione Echo chambers e filter bubbles Digital divide e accesso non equo “Ignoranza razionale” Difficoltà nello scalare processi deliberativi Bilanciare la libertà di parola con dialogo costruttivo Privacy «Abbiamo emozioni paleolitiche, istituzioni medievali e una tecnologia da dèi.» E. O. Wilson, 2009", "stocastico Dottorando Law, Science and Technology Università di Bologna · CIRSFID – ALMA AI Artificial Intelligence Universidad Politécnica de Madrid · Ontology Engineering Group collective lawmaking in salsa deliberative democracy.", "Sei buchi nella partecipazione digitale deliberativo Raccogliere commenti non è scambiarsi ragioni. inclusione L’accesso digitale non arriva a chi ha barriere. argomentativo Ragioni e fallacie restano implicite. giuridico I contributi non sono legati agli articoli della legge. frammentazione Ogni consultazione è un silo a sé. accountability Di rado sai che fine ha fatto il tuo contributo. L’ultimo", "IA != LLM != Big Tech (anche se..) Sovranità tecnologica e cognitiva: oligopoli e cosa non delegare. alla macchina, se è nostra Trascrivere due ore di assemblea Raggruppare cento frasi che dicono la stessa cosa Mostrare chi è d’accordo con chi a nessuno Scegliere di cosa si discute Scrivere le posizioni: le frasi restano di chi le dice Dire cosa conta, e decidere Usare modelli piccoli e aperti, su", "NLP utile: Semantic embeddings Un modello locale trasforma ogni frase in una lista di numeri (SBERT, BGE-M3). Frasi che dicono cose simili finiscono vicine, anche con parole diverse. Così si raggruppa per tema, si trovano i doppioni, si vede di cosa parla un’assemblea. Non capisce cosa dici. Capisce a cosa somiglia. gira su un portatile, senza rete https://citizen.svagnoni.linkeddata.es", "NLP utile: Argument mapping e fallacie Posizione: favorevole, contraria o neutra rispetto a una proposta. Basta un classificatore piccolo. Fallacie: un avviso a chi scrive, prima di pubblicare. In privato, mai in pubblico Mantenendo autonomia dell’utente, flag fallacie contestabili – dibattiti di rappresentanti di partito (?) yourlogicalfallacyis.com", "g0v.tw: fork the government 2012 Civic hacker taiwanesi rifanno i siti del governo: stesso indirizzo, con lo zero al posto della «o». 2014 Movimento dei Girasoli: parlamento occupato dal 18 marzo al 10 aprile. g0v porta rete e dirette. 2015 vTaiwan, nato da g0v, usa Polis per il caso Uber: dalla mappa del consenso a una regolazione. oggi Rami e parenti fuori da Taiwan: g0v.hk, g0v.it, la rete Code", "Civic tech world Diversi modelli di dati Linked Democracy: collegare dati, persone e decisioni con standard aperti, come i link collegano le pagine del web. Poblet et al. (2019) · peoplepowered.org/platform-ratings", "Deliberation Knowledge Graph Uno schema unico per dire chi ha discusso cosa, dove e come è finita. A sinistra i dati come arrivano dalle piattaforme. A destra l’analisi: argomenti, premesse, chi sostiene e chi attacca. Dentro oggi: Have Your Say, Parlamento europeo, Decidim Barcellona, Decide Madrid, Polis, DelibAI, CrowdLaw e altri. Tutto scaricabile. dkg.svagnoni.linkeddata.es", "", "Il modello gancio per le decisioni Federare che cosa si è deciso e perché - solo per assemblee pubbliche e multi-collettivo gancio.org · «small is better», «focus on content»", "Consultazioni UE vs Parlamento Stesso campo, pesi diversi: i temi coincidono abbastanza, l’importanza data a ciascuno no. Pesticidi: dopo la consultazione l’aula si allontana da chi ha scritto. È l’unico scarto che regge ai test. Una distanza misurata non dimostra che nessuno ascolta. Sinistra: aula prima → pareri → aula dopo · Destra: distanza prima e dopo", "CrowdLaw: la legge, un articolo alla volta Selezioni un passaggio del testo e commenti quello. L’indice si colora: favorevole, contrario, conflitto. Si entra con uno pseudonimo. Il testo annotato si esporta in formato aperto XML , Machine readable (AKN) made in Bolo – adopted by EU, ONU, IT e altri)", "Protetto chi contribuisce, mappato chi decide contributi: il meno possibile Serve il percorso dell’argomento, non il nome Uno pseudonimo diverso per ogni processo Quello che non raccogli non si sequestra potere: tutto Monithon.eu: monitoraggio civico dei fondi pubblici, dal 2013 dovevannoinostrisoldi.it: seguire la spesa Registro delle risposte Openpolis.it, istat, Open Data (!!!) https://github.c", "Base comune: cosa esce, cosa resta resta nel collettivo Audio e trascritti Nomi, voci, chi ha detto cosa Cancellati a report chiuso va nella base comune La decisione e il testo approvato Temi e posizioni, solo in aggregato Quale assemblea e quando si mappa in pubblico Atti, voti e spese di chi decide Le risposte date e quelle mancate, con la data Igiene minima: disco cifrato, log degli IP spenti, ", "Rischi: da chi ci difendiamo chi è in sala Vede solo aggregati. Ma in trenta persone lo stile di una frase ti tradisce. chi ha root Vede tutto quello che il server riceve: voti per identificativo, orari, indirizzi IP nei log. chi sequestra Prende tutto quello che è stato conservato. Conta la retention, non la buona fede. il fornitore IA Riceve audio o testo, se esternalizzi. In locale non riceve n", "Domanda aperta: cosa serve a un collettivo per decidere? memoria Un verbale che non dipende da chi c’era. federazione Far arrivare una decisione ad altre assemblee. pressione Portare quello che abbiamo deciso davanti a chi governa. dissenso visibile Sapere dove siamo divisi prima di votare. Altro?", "L’assemblea registrata, su Nextcloud 1 registra Un telefono per tavolo 2 trascrive Testo diviso per parlante 3 analizza Prima ogni tavolo, poi tra tavoli 4 rivede Una persona approva ogni risultato 5 pubblica Report in PDF, Markdown, JSON Citazione obbligatoria Ogni risultato rimanda a parlante, minuto e parole esatte. Senza prova viene scartato. Offline prima di tutto L’audio si salva sul telefon", "IA ibrida: modelli piccoli, server fidato trascrizione In locale: server Whisper self-hosted oppure Vosk. Esternalizzata: Mistral (UE), Deepgram o un endpoint Whisper compatibile. analisi Qualunque endpoint compatibile OpenAI, anche self-hosted. Riceve solo testo, mai audio. Per riassumere non serve un modello gigante, se l’infrastruttura deterministica compensa la parte probabilistica (tradeoff) ", "Pol.is: il consenso senza flame 1 scrivi Affermazioni brevi, un’idea alla volta. 2 vota D’accordo, in disaccordo oppure passo. 3 niente reply Non esiste un thread, quindi non c’è niente da trollare. 4 raggruppa PCA e k-means sulla matrice dei voti: gruppi di opinione. In evidenza finisce quello su cui concordano gruppi che sul resto votano all’opposto. pol.is · compdemocracy.org · AGPL, si può osp", "PCA, il grafico da manuale 1 Ogni punto è una persona. Ogni asse è una frase: con due frasi il disegno è piatto, con trenta avremmo trenta assi. 2 PC1 è la direzione lungo cui le persone sono più diverse tra loro. PC2 è perpendicolare 3 PC1 e PC2 vengono rappresentate come dimensioni x e y per massimizzare le componenti (astratte) – si può fare con più dimensioni", "Come Polis disegna i gruppi Poi, frase per frase, Polis conta quanto è d’accordo ogni gruppo. Accordo in tutti i gruppi: è un ponte. Gruppi opposti: è una frattura. Illustrazione con dati inventati", "Esperimento: un Polis sul server di Alex polis.democracyroutes.com Istanza ospitata in proprio, sulla macchina di Alex. Il tema della conversazione: Cosa serve al collettivo? Tech e non. pubblicità Democracy Innovators Podcast Conversazioni con chi sta ridisegnando la democrazia. Trascrizioni aperte e ricercabili. democracyinnovators.com", "5 minuti: scansiona, vota, scrivi [QR] da inserire polis.democracyroutes.com/5hafu3uxmz Vota le affermazioni che ti arrivano Scrivine di tue: una idea per frase Torna a votare quelle degli altri cosa resta sul server I tuoi voti legati a un identificativo numerico, l’orario, le frasi che scrivi. Niente nome, niente email. Partecipare è facoltativo · conversazione cancellata entro domani quando mi ", "report Quale bisogno è un ponte? Cosa non possiamo concludere, perché in questa stanza manca qualcuno? Il report dice chi ha votato cosa in aggregato, non perché https://polis.democracyroutes.com/report/r8ewza4txuknykwkwtfnw", "Micelio: adottare, poi costruire X assemblea Una domanda su Polis prima di riunirsi Verbali su CryptPad o sul vostro Nextcloud Se registrate, trascrizione in locale X mappare Un’istanza per più collettivi, su server che già esistono La mappa del vostro comune: verbali contro delibere Punti aperti feedback? Che strumenti usate? Rischi?", "Domande, patch, critiche grafo e ontologia w3id.org/deliberation github.com/Stocastico96 attrezzi pol.is (orbis) github.com/Democracy-Routes da ascoltare democracyinnovators.com monithon.eu W3C DDS: portate un caso d’uso o un pezzo di codice Signal: Stocastico.96"];
+const N = ALTS.length;
+const pad = i => String(i).padStart(2, "0");
+const img = document.getElementById("slide"), count = document.getElementById("count"), thumbs = document.getElementById("thumbs");
+let cur = 1;
+function show(i){
+  cur = Math.min(N, Math.max(1, i));
+  img.src = "slides/" + pad(cur) + ".jpg";
+  img.alt = "Slide " + cur + ": " + ALTS[cur-1];
+  count.textContent = cur + " / " + N;
+  thumbs.querySelectorAll("img").forEach((t, k) => t.classList.toggle("on", k + 1 === cur));
+  if (history.replaceState) history.replaceState(null, "", "#" + cur);
+  if (cur < N) { const pre = new Image(); pre.src = "slides/" + pad(cur + 1) + ".jpg"; }
+}
+for (let i = 1; i <= N; i++){
+  const t = document.createElement("img");
+  t.src = "slides/" + pad(i) + ".jpg"; t.loading = "lazy"; t.alt = "Miniatura slide " + i;
+  t.addEventListener("click", () => { show(i); window.scrollTo({top: 0, behavior: "smooth"}); });
+  thumbs.appendChild(t);
+}
+document.querySelector(".stage .prev").onclick = document.getElementById("b-prev").onclick = () => show(cur - 1);
+document.querySelector(".stage .next").onclick = document.getElementById("b-next").onclick = () => show(cur + 1);
+document.getElementById("b-full").onclick = () => { const s = document.getElementById("stage"); if (s.requestFullscreen) s.requestFullscreen(); };
+document.addEventListener("keydown", e => {
+  if (["ArrowRight","PageDown"," "].includes(e.key)) { e.preventDefault(); show(cur + 1); }
+  if (["ArrowLeft","PageUp"].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+  if (e.key === "Home") show(1);
+  if (e.key === "End") show(N);
+});
+let x0 = null;
+img.parentElement.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, {passive: true});
+img.parentElement.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+show(parseInt(location.hash.slice(1)) || 1);
+</script>
+</body>
+</html>
